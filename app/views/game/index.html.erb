@@ -1,0 +1,17 @@
+<h1>Last and First by iKnow!</h1>
+
+<% [session[:history], @first_word_item].flatten.each do |i| -%>
+  <% if i -%>
+  <table>
+    <tr>
+      <td><%= i.cue.text %></td>
+      <td><%= i.responses.first.text %></td>
+    </tr>
+  </table>
+  <% end -%>
+<% end -%>
+
+<% form_tag do -%>
+  <%= text_field_tag :first_word %>
+  <%= submit_tag '送信！' %>
+<% end -%>

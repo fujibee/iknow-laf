@@ -73,3 +73,12 @@ Rails::Initializer.run do |config|
   # Please note that observers generated using script/generate observer need to have an _observer suffix
   # config.active_record.observers = :cacher, :garbage_collector, :forum_observer
 end
+
+# Set your key and secret for iknow
+require 'iknow'
+Iknow::Config.init do |conf|
+  conf.api_key               = ''
+  conf.oauth_consumer_key    = ''
+  conf.oauth_consumer_secret = ''
+  conf.format                = 'xml'
+end
