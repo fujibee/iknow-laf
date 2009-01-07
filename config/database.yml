@@ -1,12 +1,16 @@
 development:
-  adapter: jdbcderby
+  adapter: jdbcmysql
   hostname: localhost
-  database: db/development
+  database: laf_dev
+  username: laf
+  password: laf
 
 test:
-  adapter: jdbcderby
+  adapter: jdbcmysql
   hostname: localhost
-  database: db/test
+  database: laf_test
+  username: laf
+  password: laf
 
 production:
   adapter: jdbcderby

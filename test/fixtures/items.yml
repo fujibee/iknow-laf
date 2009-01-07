@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  spell: MyString
+  kana: MyString
+  iknow_id: 1
+
+two:
+  spell: MyString
+  kana: MyString
+  iknow_id: 1

@@ -1,17 +1,31 @@
 class GameController < ApplicationController
 
+  START_WORD = 'apple'
   def index
-    last_word = session[:last_word]
-    last_word ||= "Apple"
-    @last_word_item = Iknow::Item.matching(last_word).first if last_word
-    first_word = params[:first_word]
-    p first_word
-    @first_word_item = Iknow::Item.matching(first_word).first if first_word
-    if first_word
-      session[:last_word] = first_word
-      session[:history] = [] unless session[:history]
-      session[:history] << @last_word_item
+    @game = session[:game]
+    if @game
+      @last_word_item = @game.history.last
+
+      first_word = params[:first_word]
+      if first_word
+        @first_word_item = Item.find_and_register(first_word)
+        @game.history << @first_word_item
+      end
     end
+  end
+
+  def new
+    @last_word_item = Item.find_and_register(START_WORD)
+    @game = Game.new(:started => true)
+    @game.history = [@last_word_item]
+    session[:game] = @game
+
+    render :action => :index
+  end
+
+  def destroy
+    session[:game] = nil
+    render :action => :index
   end
 
 end
