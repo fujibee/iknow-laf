@@ -1,0 +1,52 @@
+body {
+  padding-bottom: 1em;
+  color: #333; /* Text Color */
+  background-color: #1B75BC;
+}
+
+form {
+  margin: 1px; 
+  padding: 1px; 
+  background-color: transparent;
+}
+
+input,
+textarea {
+  margin: 1px;
+  padding: 1px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #d4d4d4 #eee #eee #d4d4d4;
+  font-family: Arial, Helvetica, "ヒラギノ角ゴ Pro W3",  sans-serif;
+  background-color: #fff;
+}
+
+h1 {
+  background-color: #666;
+}
+
+div {
+  margin: 5px;
+  padding: 5px;
+  background-color: #fff;
+}
+
+.menu {
+  border-style: solid;
+  border-color: #666;
+  border-width: 2px;
+}
+
+.content {
+  border-style: solid;
+  border-color: #666;
+  border-width: 1px;
+}
+
+.error {
+  width: 400px;
+  border-style: solid;
+  border-width: 2px;
+  border-color: #ff6633;
+}
+

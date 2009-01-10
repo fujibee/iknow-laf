@@ -1,7 +1,8 @@
 class Item < ActiveRecord::Base
 
   def self.find_and_register(spell)
-    item = find_by_spell(spell.downcase!)
+    spell.downcase!
+    item = find_by_spell(spell)
     unless item
       analyzer = TransliterationAnalyzer.new
       analyzer.analyze(spell)
