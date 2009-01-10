@@ -13,6 +13,7 @@ ActiveRecord::Schema.define(:version => 20090104033338) do
 
   create_table "games", :force => true do |t|
     t.integer  "score"
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

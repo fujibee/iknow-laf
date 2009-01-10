@@ -84,7 +84,7 @@ body {
 	padding-bottom: 1em;
 	color: #555; /* Text Color */
 	background-color: #455e7f;
-	background-image: url(images/interface/bg_body.gif);
+	/*background-image: url(images/interface/bg_body.gif);*/
 	background-repeat: repeat-x;
 	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
 }
@@ -363,7 +363,7 @@ form {
 	margin: 1em 20px; 
 	padding: 1px 0; 
 	background-color: #fff;
-	background-image: url(images/common/slash01.png);
+	/*background-image: url(images/common/slash01.png);*/
 }
 
 form dl,
@@ -393,7 +393,7 @@ textarea {
 	border-color: #d4d4d4 #eee #eee #d4d4d4;
 	font-family: Arial, Helvetica, "ヒラギノ角ゴ Pro W3",  sans-serif;
 	background-color: #fff;
-	background-image: url(images/common/bg_input.gif);
+	/*background-image: url(images/common/bg_input.gif);*/
 	background-repeat: no-repeat;
 }
 

@@ -1,0 +1,11 @@
+<%= render :partial => 'menu' %>
+
+<div>
+  <% if @games.size > 0 -%>
+    <% @games.each do |g| -%>
+      <%= @games.index(g) + 1 %>. <%= g.score %> <%= g.name %><br/>
+    <% end -%>
+  <% else -%>
+    １件もありません。
+  <% end -%>
+</div>

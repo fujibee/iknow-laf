@@ -1,15 +1,11 @@
-<h1>Last and First (Shiritori) by iKnow! API</h1>
+<%= render :partial => 'menu' %>
 
 <% unless @game -%>
   <% form_tag :action => :new do -%>
-    お名前：<%= text_field_tag :first_word %>
+    お名前：<%= text_field_tag :name %>
     <%= submit_tag 'ゲームスタート！' %>
   <% end -%>
 <% else -%>
-  <div class="menu">
-    <%= link_to 'ゲーム終了', :action => :destroy %> 
-  </div>
-
   <div class="content"> 
   <% @game and @game.history.each do |i| -%>
     <%= i.spell %> [<%= i.kana %>]

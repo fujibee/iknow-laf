@@ -1,0 +1,24 @@
+<div class="menu">
+  <%= link_to 'ゲームへ戻る', :controller => :game %>
+</div>
+
+<div>
+  <% if @items.size > 0 -%>
+    <%= link_to 'リセット', {:action => 'delete_all'}, :method => :delete %>
+    <table>
+      <tr>
+        <th>spell</th>
+        <th>kana</th>
+        <th>iKnow! ID</th>
+    <% @items.each do |i| -%>
+      <tr>
+        <td><%= i.spell %></td>
+        <td><%= i.kana %></td>
+        <td><%= link_to i.iknow_id, "http://api.iknow.co.jp/items/#{i.iknow_id}" %></td>
+      </tr>
+    <% end -%>
+    </table>
+  <% else -%>
+    １件もありません。
+  <% end -%>
+</div>

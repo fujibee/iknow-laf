@@ -11,7 +11,7 @@ class TransliterationAnalyzer
       if ja_word and ja_word.type == 'meaning'
         @kana = KakasiAdapter.new.to_hiragana(ja_word.text)
         unless @kana.empty?
-          @iknow_id = i.cue.id
+          @iknow_id = i.id
           @found = true
           break
         end

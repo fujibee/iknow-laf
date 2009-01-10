@@ -1,0 +1,6 @@
+<div class="menu">
+  <%= link_to 'ゲーム開始', :action => :index unless @game %>
+  <%= link_to 'ゲーム終了', :action => :destroy if @game %>
+  <%= link_to 'ランキング', :action => :ranking %>
+  <%= link_to 'メンテナンス', :controller => :items %>
+</div>

@@ -27,16 +27,24 @@ class GameController < ApplicationController
     @last_word_item = Item.find_and_register(START_WORD)
     @game = Game.new(:started => true)
     @game.history = [@last_word_item]
+    @game.name = params[:name]
     session[:game] = @game
 
     render :action => :index
   end
 
   def destroy
-    # TODO 終了処理：ランキングとか
-
-    session[:game] = nil
+    game = session[:game]
+    if game
+      game.score = game.history.size
+      game.save
+      session[:game] = nil
+    end
     render :action => :index
+  end
+
+  def ranking
+    @games = Game.find(:all, :order => "score desc")
   end
 
 end
