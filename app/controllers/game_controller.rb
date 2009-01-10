@@ -37,6 +37,7 @@ class GameController < ApplicationController
     game = session[:game]
     if game
       game.score = game.history.size
+      game.name = "名無しさん" if game.name.empty?
       game.save
       session[:game] = nil
     end

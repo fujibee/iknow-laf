@@ -7,8 +7,10 @@ class Item < ActiveRecord::Base
       analyzer = TransliterationAnalyzer.new
       analyzer.analyze(spell)
       if analyzer.found
-        item = create(:spell => spell, :kana => analyzer.kana,
-                      :iknow_id => analyzer.iknow_id)
+        analyzer.items.each do |i|
+          i.save
+          item ||= i
+        end
       end
     end
     item

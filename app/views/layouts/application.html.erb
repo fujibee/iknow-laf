@@ -5,12 +5,16 @@
     <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
     <%= stylesheet_link_tag 'bazooka' %>
     <%= stylesheet_link_tag 'defaults' %>
-    <title>Last and First (Shiritori) on iKnow! API</title>
+    <title>Last and First (しりとり) by iKnow! API</title>
   </head>
   <body>
-    <h1>Last and First (Shiritori) by iKnow! API</h1>
+    <h1>Last and First (しりとり) by iKnow! API</h1>
 
     <%= yield %>
+
+    <div style="float: right; background-color: transparent;">
+      <%= image_tag 'http://developer.iknow.co.jp/files/28819/powered_by_iknow_blue.png' %>
+    </div>
   </body>
 </html>
 
