@@ -1,22 +1,23 @@
 class Game < ActiveRecord::Base
 
-  attr_accessor :started, :history, :status
+  attr_accessor :started, :history, :status, :failure_times
 
   def valid_answer?(item)
-    return false unless item
-    if item.kana.last == 'ん'
-      @status = "「ん」では終われません！"
-      return false
+    result ||= "はずれ！" unless item
+    result ||= "同じ言葉は使えません！" if history.include? item
+
+    engine = ShiritoriEngine.new
+    if item and not engine.valid_connection?(item.kana, last_item.kana)
+      result ||= engine.errors.join(", ")
     end
-    if history.include? item
-      @status = "同じ言葉は使えません！"
-      return false
+
+    unless result.nil?
+      @failure_times += 1
+      @status = result
+      false
+    else
+      true
     end
-    unless last_item.kana.last == item.kana.first
-      @status = "しりとりしてください！"
-      return false
-    end
-    true
   end
 
   def last_item

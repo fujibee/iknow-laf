@@ -4,10 +4,10 @@ class TransliterationAnalyzerTest < ActiveSupport::TestCase
 
   def test_simple
     a = TransliterationAnalyzer.new
-    a.analyze("Apple")
-    a.analyze("Lion")
-    a.analyze("Tiger")
-    a.analyze("Mint")
-    a.analyze("Soy source")
+    #["Apple", "Lion", "Tiger" "Mint", "Soy source"].each do |i|
+    ["tiger"].each do |i|
+      a.analyze(i)
+      p a.items
+    end
   end
 end

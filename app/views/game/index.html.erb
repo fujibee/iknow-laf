@@ -7,15 +7,18 @@
   <% end -%>
 <% else -%>
   <div class="content"> 
-  <% @game and @game.history.each do |i| -%>
-    <%= i.spell %> [<%= i.kana %>]
-    <%= " -> " unless @game.history.last == i %>
-  <% end -%>
+    <%= @game.name %>さんの現在のスコア：<%= @game.history.size %>
+    お手つき：<%= @game.failure_times %>
+    <br/>
+    <% @game and @game.history.each do |i| -%>
+      <%= i.spell %> <%= "#{i.meaning}[#{i.kana}]" %>
+      <%= " -> " unless @game.history.last == i %>
+    <% end -%>
   </div>
 
   <% form_tag :action => :index do -%>
     <%= text_field_tag :first_word %>
-    <%= submit_tag @submit_label || '送信！' %>
+    <%= submit_tag @submit_label || 'しりとり！' %>
   <% end -%>
 
   <% if @failure_item -%>
@@ -25,6 +28,9 @@
       <%= "[#{@failure_item.kana}]" if @failure_item.kana %>
     </div>
   <% end -%>
+
+  <div class="content"> 
+    <%= link_to 'おしまいにする', :action => :destroy, :method => :delete %>
+  </div>
 <% end -%>
 
-<% render :partian => 'todo' %>

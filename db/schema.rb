@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(:version => 20090104033338) do
 
   create_table "items", :force => true do |t|
     t.string   "spell"
+    t.string   "meaning"
     t.string   "kana"
     t.integer  "iknow_id"
     t.datetime "created_at"

@@ -13,6 +13,9 @@ test:
   password: laf
 
 production:
-  adapter: jdbcderby
+  adapter: jdbcmysql
   hostname: localhost
-  database: db/production
+  database: laf
+  port: 3307
+  username: laf
+  password: laf

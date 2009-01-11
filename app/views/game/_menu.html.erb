@@ -1,6 +1,8 @@
 <div class="menu">
-  <%= link_to 'ゲーム開始', :action => :index unless @game %>
-  <%= link_to 'ゲーム終了', :action => :destroy if @game %>
+  <%= link_to 'ゲーム', :action => :index %>
   <%= link_to 'ランキング', :action => :ranking %>
-  <%= link_to 'メンテナンス', :controller => :items %>
+  <%= link_to '遊び方', :action => :help %>
+  <% if @game and @game.name == 'fujibee' -%>
+    <%= link_to 'メンテナンス', :controller => :items %>
+  <% end -%>
 </div>
