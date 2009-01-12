@@ -1,11 +1,17 @@
 <%= render :partial => 'menu' %>
 
 <% unless @game -%>
-  <% form_tag :action => :new do -%>
-    お名前：<%= text_field_tag :name %>
-    <%= submit_tag 'ゲームスタート！' %>
-  <% end -%>
+
+  <div class="panel">
+    <% form_tag :action => :new do -%>
+      お名前：<%= text_field_tag :name %>
+      <%= submit_tag 'ゲームスタート！' %>
+    <% end -%>
+    <% javascript_tag { %> $('name').focus(); <% } %>
+  </div>
+
 <% else -%>
+
   <div class="content"> 
     <%= @game.name %>さんの現在のスコア：<%= @game.history.size %>
     お手つき：<%= @game.failure_times %>
@@ -16,11 +22,6 @@
     <% end -%>
   </div>
 
-  <% form_tag :action => :index do -%>
-    <%= text_field_tag :first_word %>
-    <%= submit_tag @submit_label || 'しりとり！' %>
-  <% end -%>
-
   <% if @failure_item -%>
     <div class="error">
       <%= flash[:notice] %><br/>
@@ -29,8 +30,32 @@
     </div>
   <% end -%>
 
+  <table>
+    <tr>
+      <td>
+        <%= render :partial => "word_panel", :locals => {:item => @last_word_item} %>
+      </td>
+      <td>-></td>
+      <% if @first_word_item -%>
+      <td>
+        <%= render :partial => "word_panel", :locals => {:item => @first_word_item} %>
+      </td>
+      <% end -%>
+      <td>
+        <div class="panel">
+        <% form_tag :action => :index do -%>
+          <%= text_field_tag :first_word %>
+          <%= submit_tag @submit_label || 'しりとり！' %>
+        <% end -%>
+        <% javascript_tag { %> $('first_word').focus(); <% } %>
+        </div>
+      </td>
+    </tr>
+  </table>
+
   <div class="content"> 
     <%= link_to 'おしまいにする', :action => :destroy, :method => :delete %>
   </div>
+
 <% end -%>
 

@@ -3,6 +3,8 @@ class GameController < ApplicationController
   START_WORDS = ['apple', 'ant', 'bird', 'banana', 'cat', 'camel', 'duck', 'dog']
 #  egg elephant  flower fish  gecko guitar  horse hat ice cream cone iceberg   jellyfish jacket  kite key ladybug mermaid monster   notebook necklace  octopus orange  panda penguin queen quilt   rocket rainbow   snake star  tomato toger umbrella  violin van   whale watch   x-ray xylophone yoyo  zebra
   
+  layout "application", :except => :iknow_panel
+
   def index
     # TODO ネストが深い・・
     @game = session[:game]
@@ -11,12 +13,12 @@ class GameController < ApplicationController
 
       first_word = params[:first_word]
       if first_word and not first_word.empty?
-        first_word_item = Item.find_and_register(first_word)
-        if @game.valid_answer? first_word_item
-          @game.history << first_word_item
+        @first_word_item = Item.find_and_register(first_word)
+        if @game.valid_answer? @first_word_item
+          @game.history << @first_word_item
         else
           redirect_to :action => :destroy if @game.failure_times >= 3
-          @failure_item = first_word_item || Item.new(:spell => first_word)
+          @failure_item = @first_word_item || Item.new(:spell => first_word)
           flash[:notice] = @game.status
           @submit_label = "もう一度しりとり！"
         end
@@ -54,7 +56,13 @@ class GameController < ApplicationController
     @games = Game.find(:all, :order => "score desc")
   end
   
-  def help
+  def iknow_panel
+    @iknow_id = params[:iknow_id]
+    item = Iknow::Item.find(@iknow_id, :include_sentences => true)
+    @image_url = item.sentences.first.square_image
+    @en_text = item.sentences.first.text
+    @ja_text = item.sentences.first.translations.first.text
+    logger.debug(item.to_yaml)
   end
 
 end
