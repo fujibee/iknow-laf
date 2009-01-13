@@ -6,9 +6,9 @@
   <% if @games.size > 0 -%>
     <% @games.each do |g| -%>
       <span style="font-size: <%= 500 / (@games.index(g) + 1) + 100 %>%">
-        <%= @games.index(g) + 1 %>. <%= g.score %>回 <%= g.name %>さん
+        <%= @games.index(g) + 1 %>位. <%= g.score %>回 <%= g.name %>さん
       </span>
-        - <%= g.created_at.localtime.strftime("%m/%d %H:%M") %><br/>
+        [<%= g.created_at.localtime.strftime("%m/%d %H:%M") %>]<br/>
     <% end -%>
   <% else -%>
     １件もありません。

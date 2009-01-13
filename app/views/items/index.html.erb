@@ -13,12 +13,20 @@
         <th>meaning</th>
         <th>kana</th>
         <th>iKnow! ID</th>
-    <% @items.each do |i| -%>
+    <% @items.each do |@item| -%>
       <tr>
-        <td><%= i.spell %></td>
-        <td><%= i.meaning %></td>
-        <td><%= i.kana %></td>
-        <td><%= link_to i.iknow_id, "http://api.iknow.co.jp/items/#{i.iknow_id}" %></td>
+        <td><%= @item.spell %></td>
+        <td><%= @item.meaning %></td>
+        <% form_for :item do |f| -%> 
+          <td>
+            <%= f.text_field :kana, :id => "kana_#{@item.id}",
+              :tabindex => @items.index(@item) + 1 %>
+          </td>
+          <%= observe_field "kana_#{@item.id}", :url => {:action => :update},
+                            :on => :blur, :with => "'id=#{@item.id}&kana='+value" -%>
+        <% end -%>
+        <td><%= link_to @item.iknow_id,
+                        "http://api.iknow.co.jp/items/#{@item.iknow_id}?include_sentences=true" %></td>
       </tr>
     <% end -%>
     </table>
