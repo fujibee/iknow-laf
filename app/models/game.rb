@@ -7,12 +7,11 @@ class Game < ActiveRecord::Base
     result ||= "同じ言葉は使えません！" if history.include? first_item
 
     engine = ShiritoriEngine.new
-    if first_item and not engine.valid_connection?(last_item.kana, first_item.kana)
+    if first_item and not engine.valid?(last_item.kana, first_item.kana)
       result ||= engine.errors.join(", ")
     end
 
     unless result.nil?
-      @failure_times += 1
       @status = result
       false
     else
@@ -21,6 +20,6 @@ class Game < ActiveRecord::Base
   end
 
   def last_item
-    @history.last
+    Item.find(@history.last)
   end
 end

@@ -1,0 +1,6 @@
+  <% if @failure_item -%>
+    <div class="error">
+      <%= flash[:notice] %><br/>
+      <%= @failure_item.display_name %>
+    </div>
+  <% end -%>

@@ -15,4 +15,10 @@ class Item < ActiveRecord::Base
     end
     item
   end
+
+  def display_name
+    s = spell
+    s += " #{meaning}[#{kana}]" if kana and meaning
+    s
+  end
 end

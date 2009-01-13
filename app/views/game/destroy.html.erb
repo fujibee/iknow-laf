@@ -3,6 +3,8 @@
 <div class="content"> 
   <h2>ゲームオーバー！</h2>
   <div>
-    <%= @game.name %>さんのスコアは、<%= @game.history.size %>回 でした！
+    <%= @game.name %>さんのスコアは、<b><%= @game.history.size %>回</b> でした！
   </div>
 </div>
+
+<%= render :partial => 'error_item' %>
