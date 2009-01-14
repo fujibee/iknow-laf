@@ -1,7 +1,20 @@
 body {
   padding-bottom: 1em;
-  color: #333; /* Text Color */
+  color: #EEE; /* Text Color */
   background-color: #1B75BC;
+}
+
+h1 {
+  font-family: 'ヒラギノ角ゴ Pro W3','Hiragino Kaku Gothic Pro','メイリオ',Meiryo,'ＭＳ Ｐゴシック',sans-serif; 
+  color: #005585;
+  background-color: #FAD872;
+  font-weight: bold;
+}
+
+table {
+  margin: 1em 20px;
+  border: 0px solid #ccc;
+  background-color: transparent;
 }
 
 form {
@@ -9,6 +22,7 @@ form {
   padding: 5px; 
   background-color: transparent;
 }
+
 
 input,
 textarea {
@@ -21,14 +35,23 @@ textarea {
   background-color: #fff;
 }
 
-h1 {
-  background-color: #666;
-}
-
 div {
   margin: 5px;
   padding: 5px;
+  color: #333; /* Text Color */
   background-color: #fff;
+}
+
+a:link {
+  color: #1B75BC;
+}
+
+a:visited {
+  color: #1B75BC;
+}
+
+a:hover {
+  color: #ff6633;
 }
 
 .menu {
@@ -43,8 +66,23 @@ div {
   border-width: 1px;
 }
 
+.footer {
+  float: right;
+  color: #EEE; /* Text Color */
+  background-color: transparent;
+}
+
+.footer a {
+  color: #EEE; /* Text Color */
+}
+
 .panel {
   width: 400px;
+}
+
+.panel img {
+  border-right: 2px solid #333;
+  border-bottom: 2px solid #333;
 }
 
 .panel input {
@@ -54,7 +92,7 @@ div {
 .error {
   width: 400px;
   border-style: solid;
-  border-width: 2px;
+  border-width: 4px;
   border-color: #ff6633;
 }
 

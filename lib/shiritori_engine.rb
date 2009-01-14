@@ -24,17 +24,19 @@ class ShiritoriEngine
   end
 
   def candidates(letter)
-    dup_kana_all = DUP_KANA.keys.map {|k| [k].concat(DUP_KANA[k])}
-    dup_kana_all.each do |dk|
-      return dk if dk.include? letter
+    DUP_KANA.each do |key, value|
+      return [letter, key] if value.include? letter
     end
+    [letter]
   end
 
   private
 
   def valid_connection?(last_word, first_word)
-    first_word_candidats = candidates(first_word.first)
-    first_word_candidats.include? last_word.last
+    last_letter =
+      last_word.last == 'ー' ?  last_word[last_word.length - 2] : last_word.last
+    first_word_candidats = candidates(last_letter)
+    first_word_candidats.include? first_word.first
   end
 
 end

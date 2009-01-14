@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
 
   def index
-    @items = Item.find(:all)
+    @items = Item.paginate(:page => params[:page], :per_page => 50)
   end
 
   def update

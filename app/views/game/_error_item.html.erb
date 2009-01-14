@@ -1,6 +1,6 @@
-  <% if @failure_item -%>
+  <% if @first_word_item and not @first_word_item.spell.empty? -%>
     <div class="error">
       <%= flash[:notice] %><br/>
-      <%= @failure_item.display_name %>
+      <%= @first_word_item.display_name %>
     </div>
   <% end -%>

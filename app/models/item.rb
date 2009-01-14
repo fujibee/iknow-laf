@@ -2,18 +2,16 @@ class Item < ActiveRecord::Base
 
   def self.find_and_register(spell)
     spell.downcase!
-    item = find_by_spell(spell)
-    unless item
+    items = find_all_by_spell(spell)
+    if items.empty?
       analyzer = TransliterationAnalyzer.new
       analyzer.analyze(spell)
       if analyzer.found
-        analyzer.items.each do |i|
-          i.save
-          item ||= i
-        end
+        items = analyzer.items
+        items.each {|i| i.save}
       end
     end
-    item
+    items
   end
 
   def display_name

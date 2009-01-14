@@ -3,44 +3,44 @@ class GameController < ApplicationController
   START_WORDS =
     ['apple', 'ant', 'bird', 'banana', 'cat', 'camel', 'duck', 'dog',
      'egg', 'elephant', 'flower', 'fish', 'gecko', 'guitar', 'horse', 'hat',
-     'ice cream cone', 'iceberg', 'jellyfish', 'jacket', 'kite', 'key', 'ladybug',
+     'iceberg', 'jellyfish', 'jacket', 'kite', 'key', 'ladybug',
      'mermaid', 'monster', 'notebook', 'necklace', 'octopus', 'orange', 'panda',
-     'queen', 'quilt', 'rocket', 'rainbow', 'snake', 'star ', 'tomato',
-     'toger', 'umbrella', 'violin', 'van', 'whale', 'watch', 'x-ray', 'xylophone',
-     'yoyo', 'zebra']
+     'queen', 'quilt', 'rocket', 'rainbow', 'snake', 'star ', 'tomato', 'toger',
+     'umbrella', 'van', 'whale', 'watch', 'yoyo', 'zebra']
   
   layout "application", :except => :iknow_panel
 
   def index
-    # TODO ネストが深い・・
     @game = session[:game]
     if @game
       @last_word_item = Item.find(@game.history.last)
 
       first_word = params[:first_word]
       if first_word and not first_word.empty?
-        @first_word_item = Item.find_and_register(first_word)
+        candidate_items = Item.find_and_register(first_word)
+        @first_word_item = candidate_items.first
         if @game.valid_answer? @first_word_item
           @game.history << @first_word_item.id
+          flash[:notice] = "正解！"
+          candidate_letter = @first_word_item.kana.last
         else
           @game.failure_times += 1
-          @failure_item = @first_word_item || Item.new(:spell => first_word)
+          @first_word_item ||= Item.new(:spell => first_word)
           if @game.failure_times >= 3
-            flash[:failure_item] = @failure_item
             redirect_to :action => :destroy
           end
           flash[:notice] = @game.status
           @submit_label = "もう一度しりとり！"
+          candidate_letter = @last_word_item.kana.last
         end
       else
         @failure_item = Item.new
         flash[:notice] = "何か入れてね！"
+        candidate_letter = @last_word_item.kana.last
       end
 
       # TODO モデルへ
-      engine = ShiritoriEngine.new
-      letter = @first_word_item.nil? ? @last_word_item.kana.last : @first_word_item.kana.last
-      @candidate_letter = engine.candidates(letter).join("、")
+      @candidate_letters = ShiritoriEngine.new.candidates(candidate_letter).join("、")
     end
   end
 
@@ -53,16 +53,18 @@ class GameController < ApplicationController
     @game.name = "名無し" if @game.name.empty?
     session[:game] = @game
 
-    render :action => :index
+    redirect_to :action => :index
+    #render :action => :index
   end
 
   def destroy
     @game = session[:game]
     if @game
+      flash[:notice] = @game.status
+      @first_word_item = Item.new(:spell => params[:first_word])
+      session[:game] = nil
       @game.score = @game.history.size
       @game.save
-      @failure_item = flash[:failure_item]
-      session[:game] = nil
     else
       redirect_to :action => :index
     end
@@ -81,7 +83,7 @@ class GameController < ApplicationController
       @en_text = @sentence.text
       @ja_text = @sentence.translations.first.text
     end
-    logger.debug(item.to_yaml)
+    #logger.debug(item.to_yaml)
   end
 
 end

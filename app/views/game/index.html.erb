@@ -13,7 +13,7 @@
 <% else -%>
 
   <div class="content"> 
-    <%= @game.name %>さんの現在のスコア：<b><%= @game.history.size %>回</b>
+    <b><%= @game.name %></b>さんの現在のスコア：<b><%= @game.history.size %>回</b>
     お手つき：<b><%= @game.failure_times %>回</b>
     <br/>
     <% @game and @game.history.map {|i| Item.find(i)}.each do |item| -%>
@@ -24,12 +24,15 @@
 
   <%= render :partial => "error_item" %>
 
+  <center>
   <table>
     <tr>
       <td>
         <%= render :partial => "word_panel", :locals => {:item => @last_word_item} %>
       </td>
-      <td>-></td>
+      <td style="background-color: transparent;">
+        <%= image_tag 'arrow-right.png' %>
+      </td>
       <% if @first_word_item -%>
       <td>
         <%= render :partial => "word_panel", :locals => {:item => @first_word_item} %>
@@ -37,7 +40,7 @@
       <% end -%>
       <td>
         <div class="panel">
-          「<%= @candidate_letter %>」で始まる意味を持つ英単語は？
+          「<%= @candidate_letters %>」で始まる意味を持つ英単語は？
           <% form_tag :action => :index do -%>
             <%= text_field_tag :first_word %>
             <%= submit_tag @submit_label || 'しりとり！' %>
@@ -47,6 +50,7 @@
       </td>
     </tr>
   </table>
+  </center>
 
   <div class="content"> 
     <%= link_to 'おしまいにする', :action => :destroy, :method => :delete %>

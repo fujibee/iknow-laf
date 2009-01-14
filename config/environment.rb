@@ -74,6 +74,9 @@ Rails::Initializer.run do |config|
   # config.active_record.observers = :cacher, :garbage_collector, :forum_observer
 end
 
+# for pagination
+require 'will_paginate'
+
 # for JRuby
 require 'java'
 require "#{RAILS_ROOT}/lib/java/kakasi"
