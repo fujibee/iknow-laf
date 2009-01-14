@@ -1,12 +1,19 @@
 <div class="menu">
+  <%= link_to 'アイテム一覧', :action => :index %> |
   <%= link_to 'ゲームへ戻る', :controller => :game %>
 </div>
 
 <%= render :partial => 'todo' %>
 
+<% form_tag :action => 'search' do -%>
+  <%= text_field_tag :spell %>
+  <%= submit_tag '検索' %>
+<% end -%>
 <div>
+    <%= link_to 'アイテムリセット', {:action => 'destroy_all'}, :method => :delete %> 
+    |
+    <%= link_to 'ランキングリセット', {:controller => 'game', :action => 'destroy_all'}, :method => :delete %><br/>
   <% if @items.size > 0 -%>
-    <%= link_to 'リセット', {:action => 'delete_all'}, :method => :delete %>
     <%= will_paginate(@items) %>
     <table>
       <tr>
@@ -14,6 +21,7 @@
         <th>meaning</th>
         <th>kana</th>
         <th>iKnow! ID</th>
+        <th></th>
     <% @items.each do |@item| -%>
       <tr>
         <td><%= @item.spell %></td>
@@ -26,8 +34,8 @@
           <%= observe_field "kana_#{@item.id}", :url => {:action => :update},
                             :on => :blur, :with => "'id=#{@item.id}&kana='+value" -%>
         <% end -%>
-        <td><%= link_to @item.iknow_id,
-                        "http://api.iknow.co.jp/items/#{@item.iknow_id}?include_sentences=true" %></td>
+        <td><%= link_to @item.iknow_id, "http://api.iknow.co.jp/items/#{@item.iknow_id}?include_sentences=true" %></td>
+        <td><%= link_to 'x', {:action => :destroy, :id => @item}, :method => :delete, :confirm => "#{@item.display_name}を削除しますか？" %></td>
       </tr>
     <% end -%>
     </table>

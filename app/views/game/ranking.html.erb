@@ -10,6 +10,7 @@
       </span>
         [<%= g.created_at.localtime.strftime("%m/%d %H:%M") %>]<br/>
     <% end -%>
+    <%= will_paginate(@games) %>
   <% else -%>
     １件もありません。
   <% end -%>

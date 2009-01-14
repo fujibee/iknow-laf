@@ -1,11 +1,16 @@
 <%= render :partial => 'menu' %>
 
-<div class="content"> 
-  <h2>ゲームオーバー！</h2>
-  <div>
-    <%= @game.name %>さんのスコアは、<b><%= @game.score %>回</b> でした！<br/>
-    <%= link_to 'もう一度やる！', :action => :index %>
-  </div>
+<div id="endPanel" class="panel">
+  <br/>
+  <%= @game.name %>さんのスコアは、<b><%= @game.score %>回</b> でした！<br/>
+  <%= link_to 'もう一度やる！', :action => :index %> |
+  <%= link_to 'ランキングを見る', :action => :ranking %>
 </div>
+<% javascript_tag do -%>
+  var endPanel = new YAHOO.widget.Panel("endPanel",
+    { close: true, width: "300px", height: "100px", fixedCenter: true, modal: true});
+  endPanel.setHeader("ゲームオーバー！")
+  endPanel.render();
+<% end -%>
 
 <%= render :partial => 'error_item' %>

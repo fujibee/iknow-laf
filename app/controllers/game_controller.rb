@@ -8,7 +8,7 @@ class GameController < ApplicationController
      'jellyfish', 'jacket', 'kite', 'key', 'ladybug', 'mermaid', 'monster',
      'notebook', 'necklace', 'octopus', 'orange', 'panda', 'queen', 
      'rocket', 'rainbow', 'snake', 'star ', 'tomato', 'toger',
-     'umbrella', 'van', 'whale', 'watch', 'yoyo', 'zebra']
+     'umbrella', 'van', 'whale', 'watch', 'zebra']
 
   def index
     @game = session[:game]
@@ -52,6 +52,8 @@ class GameController < ApplicationController
     @last_word_item = @game.select_first_word_item(candidate_items)
     @game.history = [@last_word_item.id]
     @game.name = params[:name]
+    session[:name] = @game.name # for second try
+
     @game.name = "名無し" if @game.name.empty?
     session[:game] = @game
 
@@ -71,8 +73,14 @@ class GameController < ApplicationController
     end
   end
 
+  def destroy_all
+    Game.destroy_all
+    redirect_to :action => :ranking
+  end
+
   def ranking
-    @games = Game.find(:all, :order => "score desc")
+    @games = Game.paginate(:all, :order => "score desc",
+                           :page => params[:page], :per_page => 100)
   end
   
   def iknow_panel
@@ -82,7 +90,7 @@ class GameController < ApplicationController
     if @sentence
       @image_url = @sentence.square_image
       @en_text = @sentence.text
-      @ja_text = @sentence.translations.first.text
+      @ja_text = @sentence.translations.first.text if @sentence.translations
     end
     #logger.debug(item.to_yaml)
   end

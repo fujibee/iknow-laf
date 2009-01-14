@@ -5,6 +5,7 @@ body {
 }
 
 h1 {
+  font-size: 180%;
   font-family: 'ヒラギノ角ゴ Pro W3','Hiragino Kaku Gothic Pro','メイリオ',Meiryo,'ＭＳ Ｐゴシック',sans-serif; 
   color: #005585;
   background-color: #FAD872;
@@ -101,6 +102,10 @@ a.iknow_link:hover {
   width: 400px;
 }
 
+.panel input {
+  background-color: #EEEEEE;
+}
+
 .panel img {
   border-top: 1px solid #333;
   border-left: 1px solid #333;
@@ -108,14 +113,36 @@ a.iknow_link:hover {
   border-bottom: 3px solid #333;
 }
 
-.panel input {
-  background-color: #EEEEEE;
-}
-
 .error {
-  width: 400px;
+  float: right;
+  width: 300px;
   border-style: solid;
   border-width: 4px;
   border-color: #ff6633;
+}
+
+#inputPanel_c, #inputPanel_h, #inputPanel {
+  margin: 0px;
+  padding: 0px;
+}
+#inputPanel_h {
+  background-color: #ff6633;
+}
+
+#inputPanel input {
+  background-color: #EEEEEE;
+}
+
+#endPanel_c, #endPanel_h, #endPanel {
+  margin: 0px;
+  padding: 0px;
+}
+#endPanel_h {
+  height: 20px;
+  background-color: #ff6633;
+}
+#endPanel {
+  text-align: center;
+  vertical-align: middle;
 }
 
