@@ -17,12 +17,20 @@ table {
   background-color: transparent;
 }
 
+th,
+td {
+  padding: 0 10px;
+  border-bottom: 0px solid #ddd;
+  border-right: 0px solid #ddd;
+  border-collapse: separate;
+  border-spacing: 0px;
+}
+
 form {
   margin: 5px; 
   padding: 5px; 
   background-color: transparent;
 }
-
 
 input,
 textarea {
@@ -42,22 +50,35 @@ div {
   background-color: #fff;
 }
 
-a:link {
-  color: #1B75BC;
-}
+a:link { color: #1B75BC; }
+a:visited { color: #1B75BC; }
+a:hover { color: #ff6633; }
 
-a:visited {
-  color: #1B75BC;
+a.iknow_link:link {
+  color: #333;
+  text-decoration: none;
 }
-
-a:hover {
+a.iknow_link:visited {
+  color: #333;
+  text-decoration: none;
+}
+a.iknow_link:hover {
   color: #ff6633;
+  text-decoration: underline;
 }
 
 .menu {
+  text-align: center;
   border-style: solid;
   border-color: #666;
   border-width: 2px;
+}
+
+.scoreboard {
+  text-align: center;
+  border-style: solid;
+  border-color: #666;
+  border-width: 1px;
 }
 
 .content {
@@ -81,8 +102,10 @@ a:hover {
 }
 
 .panel img {
-  border-right: 2px solid #333;
-  border-bottom: 2px solid #333;
+  border-top: 1px solid #333;
+  border-left: 1px solid #333;
+  border-right: 3px solid #333;
+  border-bottom: 3px solid #333;
 }
 
 .panel input {

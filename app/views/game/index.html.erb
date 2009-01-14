@@ -12,18 +12,6 @@
 
 <% else -%>
 
-  <div class="content"> 
-    <b><%= @game.name %></b>さんの現在のスコア：<b><%= @game.history.size %>回</b>
-    お手つき：<b><%= @game.failure_times %>回</b>
-    <br/>
-    <% @game and @game.history.map {|i| Item.find(i)}.each do |item| -%>
-      <%= item.display_name %>
-      <%= " -> " unless @game.history.last == item.id %>
-    <% end -%>
-  </div>
-
-  <%= render :partial => "error_item" %>
-
   <center>
   <table>
     <tr>
@@ -33,7 +21,7 @@
       <td style="background-color: transparent;">
         <%= image_tag 'arrow-right.png' %>
       </td>
-      <% if @first_word_item -%>
+      <% if @first_word_item and @first_word_item.kana -%>
       <td>
         <%= render :partial => "word_panel", :locals => {:item => @first_word_item} %>
       </td>
@@ -52,7 +40,11 @@
   </table>
   </center>
 
-  <div class="content"> 
+  <%= render :partial => "error_item" %>
+
+  <%= render :partial => 'scoreboard' %>
+
+  <div class="menu"> 
     <%= link_to 'おしまいにする', :action => :destroy, :method => :delete %>
   </div>
 

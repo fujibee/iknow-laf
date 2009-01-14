@@ -17,13 +17,15 @@ class ShiritoriEngine
     @errors = []
   end
 
-  def valid?(last_word, first_word)
+  def validate_connection(last_word, first_word)
+    @errors = []
     @errors << "「ん」では終われません！" if first_word.last == 'ん'
     @errors << "しりとりになっていません！" unless valid_connection?(last_word, first_word)
     @errors.size == 0
   end
 
-  def candidates(letter)
+  def candidates(candidate_word)
+    letter = last_letter(candidate_word)
     DUP_KANA.each do |key, value|
       return [letter, key] if value.include? letter
     end
@@ -33,10 +35,17 @@ class ShiritoriEngine
   private
 
   def valid_connection?(last_word, first_word)
-    last_letter =
-      last_word.last == 'ー' ?  last_word[last_word.length - 2] : last_word.last
-    first_word_candidats = candidates(last_letter)
+    first_word_candidats = candidates(last_letter(last_word))
     first_word_candidats.include? first_word.first
+  end
+
+  def last_letter(last_word)
+    if last_word.last == 'ー'
+      last_word_mb = last_word.split(//)
+      last_word_mb[last_word_mb.length - 2]
+    else
+      last_word.last
+    end
   end
 
 end

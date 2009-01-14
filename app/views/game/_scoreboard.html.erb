@@ -1,0 +1,9 @@
+  <div class="scoreboard"> 
+    <b><%= @game.name %></b>さんの現在のスコア：<b><%= @game.history.size %>回</b>
+    お手つき：<b><%= @game.failure_times %>回</b>
+    <br/>
+    <% @game and @game.history.map {|i| Item.find(i)}.each do |item| -%>
+      <%= iknow_link item %>
+      <%= " -> " unless @game.history.last == item.id %>
+    <% end -%>
+  </div>
