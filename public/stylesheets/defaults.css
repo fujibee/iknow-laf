@@ -20,11 +20,13 @@ table {
 
 th,
 td {
-  padding: 0 10px;
+  margin: 0px; 
+  padding: 0px;
   border-bottom: 0px solid #ddd;
   border-right: 0px solid #ddd;
   border-collapse: separate;
   border-spacing: 0px;
+  background-color: transparent;
 }
 
 form {
@@ -75,6 +77,19 @@ a.iknow_link:hover {
   border-width: 2px;
 }
 
+.main {
+  background-color: transparent;
+}
+
+.upward {
+  position: relative;
+  top: -50px;
+}
+
+.main td {
+  padding: 10px;
+}
+
 .scoreboard {
   text-align: center;
   border-style: solid;
@@ -100,6 +115,10 @@ a.iknow_link:hover {
 
 .panel {
   width: 400px;
+  border-top: 1px solid #333;
+  border-left: 1px solid #333;
+  border-right: 3px solid #333;
+  border-bottom: 3px solid #333;
 }
 
 .panel input {
@@ -107,10 +126,10 @@ a.iknow_link:hover {
 }
 
 .panel img {
-  border-top: 1px solid #333;
-  border-left: 1px solid #333;
-  border-right: 3px solid #333;
-  border-bottom: 3px solid #333;
+  border-top: 3px solid #333;
+  border-left: 3px solid #333;
+  border-right: 1px solid #333;
+  border-bottom: 1px solid #333;
 }
 
 .error {
@@ -119,30 +138,31 @@ a.iknow_link:hover {
   border-style: solid;
   border-width: 4px;
   border-color: #ff6633;
+  position: relative;
+  top: -20px;
 }
 
-#inputPanel_c, #inputPanel_h, #inputPanel {
-  margin: 0px;
-  padding: 0px;
-}
-#inputPanel_h {
-  background-color: #ff6633;
-}
-
-#inputPanel input {
-  background-color: #EEEEEE;
-}
-
+#inputPanel_c, #inputPanel_h, #inputPanel,
 #endPanel_c, #endPanel_h, #endPanel {
   margin: 0px;
   padding: 0px;
 }
-#endPanel_h {
-  height: 20px;
+
+#inputPanel_h {
   background-color: #ff6633;
 }
-#endPanel {
+
+#loginPanel, #endPanel {
   text-align: center;
   vertical-align: middle;
+}
+
+#loginPanel input, #inputPanel input {
+  background-color: #EEEEEE;
+}
+
+#endPanel_h {
+  height: 18px;
+  background-color: #ff6633;
 }
 

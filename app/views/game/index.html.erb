@@ -2,17 +2,26 @@
 
 <% unless @game -%>
 
-  <div class="panel">
+  <center>
+  <div id="loginPanel" class="panel">
+    <%= "<br/>" * 5 %>
     <% form_tag :action => :new do -%>
       お名前：<%= text_field_tag :name, session[:name] %>
       <%= submit_tag 'ゲームスタート！' %>
     <% end -%>
     <% javascript_tag { %> $('name').focus(); <% } %>
+    <%= "<br/>" * 5 %>
+  </div>
+  </center>
+
+  <div class="menu"> 
+    <%= link_to '[管理用]', :controller => :items %>
   </div>
 
 <% else -%>
 
   <div id="inputPanel" class="panel">
+    &nbsp;
     「<%= @candidate_letters %>」で始まる意味を持つ英単語は？
     <% form_tag :action => :index do -%>
       <%= text_field_tag :first_word %>
@@ -28,27 +37,25 @@
 
   <%= render :partial => "error_item" %>
 
-  <center>
+  <div class="main upward" align="center">
   <table>
     <tr>
       <td>
         <%= render :partial => "word_panel", :locals => {:item => @last_word_item} %>
       </td>
-      <% if @first_word_item and @first_word_item.kana -%>
       <td style="background-color: transparent;">
         <%= image_tag 'arrow-right.png' %>
       </td>
       <td>
         <%= render :partial => "word_panel", :locals => {:item => @first_word_item} %>
       </td>
-      <% end -%>
     </tr>
   </table>
-  </center>
+  </div>
 
   <%= render :partial => 'scoreboard' %>
 
-  <div class="menu"> 
+  <div class="menu upward"> 
     <%= link_to 'おしまいにする', :action => :destroy, :method => :delete %>
   </div>
 

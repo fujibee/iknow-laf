@@ -4,11 +4,10 @@ class GameController < ApplicationController
 
   START_WORDS =
     ['apple', 'ant', 'bird', 'banana', 'cat', 'camel', 'duck', 'dog', 'egg',
-     'elephant', 'flower', 'fish', 'gecko', 'guitar', 'horse', 'hat', 'iceberg',
-     'jellyfish', 'jacket', 'kite', 'key', 'ladybug', 'mermaid', 'monster',
-     'notebook', 'necklace', 'octopus', 'orange', 'panda', 'queen', 
-     'rocket', 'rainbow', 'snake', 'star ', 'tomato', 
-     'umbrella', 'van', 'whale', 'watch', 'zebra']
+     'elephant', 'flower', 'fish', 'horse', 'hat', 'iceberg', 'jellyfish', 'jacket',
+     'kite', 'key', 'ladybug', 'mermaid', 'monster', 'notebook', 'necklace',
+     'octopus', 'orange', 'panda', 'queen', 'rocket', 'rainbow', 'snake', 'star',
+     'tomato', 'umbrella', 'van', 'whale', 'watch', 'zebra']
 
   def index
     @game = session[:game]
@@ -27,10 +26,10 @@ class GameController < ApplicationController
         else
           @game.failure_times += 1
           @first_word_item ||= Item.new(:spell => first_word)
-          if @game.failure_times >= 3
-            redirect_to :action => :destroy
-          end
           flash[:notice] = @game.status
+
+          redirect_to :action => :destroy if @game.failure_times >= 3
+
           @submit_label = "もう一度しりとり！"
           candidate_word = @last_word_item.kana
         end
@@ -59,6 +58,7 @@ class GameController < ApplicationController
     @game.name = "名無し" if @game.name.empty?
     session[:game] = @game
 
+    flash[:notice] = "スタート！"
     redirect_to :action => :index
   end
 
