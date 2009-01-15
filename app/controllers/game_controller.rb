@@ -7,7 +7,7 @@ class GameController < ApplicationController
      'elephant', 'flower', 'fish', 'gecko', 'guitar', 'horse', 'hat', 'iceberg',
      'jellyfish', 'jacket', 'kite', 'key', 'ladybug', 'mermaid', 'monster',
      'notebook', 'necklace', 'octopus', 'orange', 'panda', 'queen', 
-     'rocket', 'rainbow', 'snake', 'star ', 'tomato', 'toger',
+     'rocket', 'rainbow', 'snake', 'star ', 'tomato', 
      'umbrella', 'van', 'whale', 'watch', 'zebra']
 
   def index
@@ -50,6 +50,8 @@ class GameController < ApplicationController
 
     @game = Game.new(:started => true, :failure_times => 0)
     @last_word_item = @game.select_first_word_item(candidate_items)
+    redirect_to :action => index unless @last_word_item
+
     @game.history = [@last_word_item.id]
     @game.name = params[:name]
     session[:name] = @game.name # for second try
