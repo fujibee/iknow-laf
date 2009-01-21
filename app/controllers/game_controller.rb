@@ -11,6 +11,10 @@ class GameController < ApplicationController
 
   def index
     @game = session[:game]
+  end
+
+  def try
+    @game = session[:game]
     if @game
       @last_word_item = Item.find(@game.history.last)
 
@@ -76,7 +80,7 @@ class GameController < ApplicationController
   end
 
   def destroy_all
-    Game.destroy_all
+    #Game.destroy_all
     redirect_to :action => :ranking
   end
 

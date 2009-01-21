@@ -17,9 +17,6 @@
   <%= submit_tag '検索' %>
 <% end -%>
 <div>
-    <%= link_to 'アイテムリセット', {:action => 'destroy_all'}, :method => :delete %> 
-    |
-    <%= link_to 'ランキングリセット', {:controller => 'game', :action => 'destroy_all'}, :method => :delete %><br/>
   <% if @items.size > 0 -%>
     <%= will_paginate(@items) %>
     <table>

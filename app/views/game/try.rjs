@@ -1,0 +1,13 @@
+# inputPanel
+page[:candidate_letters].replace_html(@candidate_letters)
+page[:first_word].value = ""
+
+# message
+page[:message].replace_html(:partial => 'message')
+
+# item panels
+page[:last_item_panel].replace_html(:partial => 'item_panel',
+                                    :locals =>{ :item => @last_word_item})
+page[:first_item_panel].replace_html(:partial => 'item_panel',
+                                     :locals =>{ :item => @first_word_item})
+page[:scoreboard].replace_html(:partial => 'scoreboard')

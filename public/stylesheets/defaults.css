@@ -90,7 +90,7 @@ a.iknow_link:hover {
   padding: 10px;
 }
 
-.scoreboard {
+#scoreboard {
   text-align: center;
   border-style: solid;
   border-color: #666;
@@ -132,7 +132,7 @@ a.iknow_link:hover {
   border-bottom: 1px solid #333;
 }
 
-.error {
+#message {
   float: right;
   width: 300px;
   border-style: solid;

@@ -20,44 +20,35 @@
 
 <% else -%>
 
-  <div id="inputPanel" class="panel">
-    &nbsp;
-    「<%= @candidate_letters %>」で始まる意味を持つ英単語は？
-    <% form_tag :action => :index do -%>
-      <%= text_field_tag :first_word %>
-      <%= submit_tag @submit_label || 'しりとり！' %>
-    <% end -%>
-  </div>
-  <% javascript_tag do -%>
-    var inputPanel = new YAHOO.widget.Panel("inputPanel",
-      { close: false, width: "300px", height: "70px", xy: [50, 60]});
-    inputPanel.render();
-    $('first_word').focus(); 
-  <% end -%>
+  <%= render :partial => "input_panel" %>
 
-  <%= render :partial => "error_item" %>
+  <div id="message"></div>
 
   <div class="main upward" align="center">
   <table>
     <tr>
       <td>
-        <%= render :partial => "word_panel", :locals => {:item => @last_word_item} %>
+        <div id="last_item_panel" class="panel"></div>
       </td>
       <td style="background-color: transparent;">
         <%= image_tag 'arrow-right.png' %>
       </td>
       <td>
-        <%= render :partial => "word_panel", :locals => {:item => @first_word_item} %>
+        <div id="first_item_panel" class="panel"></div>
       </td>
     </tr>
   </table>
   </div>
 
-  <%= render :partial => 'scoreboard' %>
+  <div id="scoreboard" class="upward"></div>
 
   <div class="menu upward"> 
     <%= link_to 'おしまいにする', :action => :destroy, :method => :delete %>
   </div>
+
+  <% javascript_tag do -%>
+    <%= remote_function(:url => {:action => :try}) %>
+  <% end -%>
 
 <% end -%>
 

@@ -25,7 +25,7 @@ class ItemsController < ApplicationController
   end
 
   def destroy_all
-    Item.destroy_all
+    #Item.destroy_all
     session[:game] = nil
     redirect_to :action => :index
   end
