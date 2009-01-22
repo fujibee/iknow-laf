@@ -11,3 +11,7 @@ page[:last_item_panel].replace_html(:partial => 'item_panel',
 page[:first_item_panel].replace_html(:partial => 'item_panel',
                                      :locals =>{ :item => @first_word_item})
 page[:scoreboard].replace_html(:partial => 'scoreboard')
+
+# game over..
+page[:game_score].replace_html(@game.score)
+page << 'endPanel.render();' if @game.over?

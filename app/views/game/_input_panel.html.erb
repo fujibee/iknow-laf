@@ -5,8 +5,7 @@
                        :loading => "document.body.style.cursor = 'wait'",
                        :complete => "document.body.style.cursor = 'auto'") do -%>
       <%= text_field_tag :first_word %>
-      <%= submit_tag(@submit_label || 'しりとり！')
-      %>
+      <%= submit_tag(@submit_label || 'しりとり！') %>
     <% end -%>
   </div>
   <% javascript_tag do -%>

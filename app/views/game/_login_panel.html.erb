@@ -1,0 +1,11 @@
+  <center>
+  <div id="loginPanel" class="panel">
+    <%= "<br/>" * 5 %>
+    <% form_tag :action => :new do -%>
+      お名前：<%= text_field_tag :name, session[:name] %>
+      <%= submit_tag 'ゲームスタート！' %>
+    <% end -%>
+    <% javascript_tag { %> $('name').focus(); <% } %>
+    <%= "<br/>" * 5 %>
+  </div>
+  </center>

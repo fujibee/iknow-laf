@@ -2,17 +2,7 @@
 
 <% unless @game -%>
 
-  <center>
-  <div id="loginPanel" class="panel">
-    <%= "<br/>" * 5 %>
-    <% form_tag :action => :new do -%>
-      お名前：<%= text_field_tag :name, session[:name] %>
-      <%= submit_tag 'ゲームスタート！' %>
-    <% end -%>
-    <% javascript_tag { %> $('name').focus(); <% } %>
-    <%= "<br/>" * 5 %>
-  </div>
-  </center>
+  <%= render :partial => "login_panel" %>
 
   <div class="menu"> 
     <%= link_to '[管理用]', :controller => :items %>
@@ -45,6 +35,9 @@
   <div class="menu upward"> 
     <%= link_to 'おしまいにする', :action => :destroy, :method => :delete %>
   </div>
+
+  <!-- game over 用 -->
+  <%= render :partial => "end_panel" %>
 
   <% javascript_tag do -%>
     <%= remote_function(:url => {:action => :try}) %>

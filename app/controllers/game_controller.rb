@@ -4,7 +4,7 @@ class GameController < ApplicationController
 
   START_WORDS =
     ['apple', 'ant', 'bird', 'banana', 'cat', 'camel', 'duck', 'dog', 'egg',
-     'elephant', 'flower', 'fish', 'horse', 'hat', 'iceberg', 'jellyfish', 'jacket',
+     'elephant', 'flower', 'fish', 'horse', 'hat', 'jellyfish', 'jacket',
      'kite', 'key', 'ladybug', 'mermaid', 'monster', 'notebook', 'necklace',
      'octopus', 'orange', 'panda', 'queen', 'rocket', 'rainbow', 'snake', 'star',
      'tomato', 'umbrella', 'van', 'whale', 'watch', 'zebra']
@@ -29,10 +29,10 @@ class GameController < ApplicationController
           candidate_word = @first_word_item.kana
         else
           @game.failure_times += 1
+          destroy if @game.over?
+
           @first_word_item ||= Item.new(:spell => first_word)
           flash[:notice] = @game.status
-
-          redirect_to :action => :destroy if @game.failure_times >= 3
 
           @submit_label = "もう一度しりとり！"
           candidate_word = @last_word_item.kana

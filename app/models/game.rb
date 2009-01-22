@@ -37,4 +37,8 @@ class Game < ActiveRecord::Base
   def last_item
     Item.find(@history.last) unless @history.nil?
   end
+
+  def over?
+    failure_times >= 3
+  end
 end
