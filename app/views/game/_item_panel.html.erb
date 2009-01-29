@@ -1,6 +1,6 @@
         <% if item and item.id and item.iknow_id -%>
         <h2><%= iknow_link item %></h2>
-        <div id="last_iknow_panel_<%= item.id %>"></div>
+        <div id="last_iknow_panel_<%= item.id %>"><%= image_tag 'loading.gif' %></div>
           <% javascript_tag do -%>
             <%= remote_function :url => {:action => :iknow_panel},
               :update => 'last_iknow_panel_' + item.id.to_s,

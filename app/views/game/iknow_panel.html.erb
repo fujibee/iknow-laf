@@ -1,7 +1,9 @@
           <% if @sentence -%>
             <%= @en_text %><br/>
             <%= @ja_text %><br/>
-            <%= image_tag @image_url if @image_url %>
+            <span class="img_frame">
+              <%= image_tag @image_url if @image_url %>
+            </span>
           <% else -%>
             例文はありません。
           <% end -%>

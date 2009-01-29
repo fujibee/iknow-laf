@@ -1,9 +1,10 @@
   <div id="inputPanel" class="panel">
     &nbsp;
     <b>「<span id="candidate_letters"></span>」</b>で始まる意味を持つ英単語は？
+    <span id="input_loading"><%= image_tag('loading.gif') %></span>
     <% form_remote_tag(:url => {:action => :try},
-                       :loading => "document.body.style.cursor = 'wait'",
-                       :complete => "document.body.style.cursor = 'auto'") do -%>
+                       :loading => "start_loading();",
+                       :complete => "end_loading();") do -%>
       <%= text_field_tag :first_word %>
       <%= submit_tag(@submit_label || 'しりとり！') %>
     <% end -%>

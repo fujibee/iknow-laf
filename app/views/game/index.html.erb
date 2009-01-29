@@ -40,7 +40,17 @@
   <%= render :partial => "end_panel" %>
 
   <% javascript_tag do -%>
-    <%= remote_function(:url => {:action => :try}) %>
+    function start_loading() {
+      document.body.style.cursor = 'wait';
+      $('input_loading').show();
+    }
+    function end_loading() {
+      document.body.style.cursor = 'auto';
+      $('input_loading').hide();
+    }
+    <%= remote_function(:url => {:action => :try},
+                        :loading => "start_loading();",
+                        :complete => "end_loading();") %>
   <% end -%>
 
 <% end -%>
