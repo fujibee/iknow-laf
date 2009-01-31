@@ -1,5 +1,5 @@
 # Be sure to restart your server when you modify this file
-LAF_VERSION = '1.0'
+LAF_VERSION = '1.1'
 
 # Uncomment below to force Rails into production mode when
 # you don't control web/app server and can't set it the proper way

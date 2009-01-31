@@ -1,5 +1,8 @@
 class Item < ActiveRecord::Base
 
+  has_many :game_items
+  has_many :games, :through => :game_items
+
   def self.find_and_register(spell)
     spell.downcase!
     items = find_all_by_spell(spell)

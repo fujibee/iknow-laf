@@ -1,5 +1,8 @@
 class Game < ActiveRecord::Base
 
+  has_many :game_items
+  has_many :items, :through => :game_items
+
   attr_accessor :started, :history, :status, :failure_times
 
   # check validate and store errors

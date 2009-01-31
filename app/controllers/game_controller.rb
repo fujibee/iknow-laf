@@ -73,6 +73,7 @@ class GameController < ApplicationController
       @first_word_item = Item.new(:spell => params[:first_word])
       session[:game] = nil
       @game.score = @game.history.size
+      @game.items = @game.history.map{|id| Item.find(id)}
       @game.save
     else
       redirect_to :action => :index

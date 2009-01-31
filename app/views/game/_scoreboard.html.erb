@@ -2,6 +2,6 @@
     お手つき：<b><%= @game.failure_times %>回</b>
     <br/>
     <% @game and @game.history.map {|i| Item.find(i)}.each do |item| -%>
-      <%= iknow_link item %>
+      <%= iknow_item_link item %>
       <%= image_tag 'arrow-right.png' unless @game.history.last == item.id %>
     <% end -%>
