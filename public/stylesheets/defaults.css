@@ -86,6 +86,10 @@ a.iknow_link:hover {
   top: -50px;
 }
 
+.indent {
+  margin: 0px 20px;
+}
+
 .main td {
   padding: 10px;
 }

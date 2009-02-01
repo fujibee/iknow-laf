@@ -23,6 +23,7 @@ class TransliterationAnalyzer
           kana = kakasi.to_hiragana(meaning)
           unless kana.empty?
             item.kana = kana
+            item.first_kana_key = ShiritoriEngine.new.kana_key(item.kana.first)
             item.meaning = meaning
             item.iknow_id = iknow_item.id
             @items << item

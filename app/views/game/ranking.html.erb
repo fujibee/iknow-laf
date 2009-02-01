@@ -1,7 +1,10 @@
 <%= render :partial => 'menu' %>
 
 <div class="content">
-  <h2>ランキング</h2>
+  ゲームランキング
+  |
+  <%= link_to 'アイテムランキング', :controller => :items, :action => :ranking %>
+  <h2>ゲームランキング</h2>
   <div>
   <% if @games.size > 0 -%>
     <% @games.each do |g| -%>
@@ -10,7 +13,7 @@
       </span>
       [<%= g.created_at.localtime.strftime("%m/%d %H:%M") %>]<br/>
       <% if g.items.size > 0 -%>
-      <div style="margin:0px 0px 0px 20px;">
+      <div style="margin:0px 20px;border: solid 1px gray;">
         <%= "#{g.items.map {|i| iknow_item_link(i)}.join(image_tag 'arrow-right.png')}" %>
       </div>
   <% end -%>

@@ -1,5 +1,7 @@
 class ShiritoriEngine
 
+  # TODO It should be singleton. To do so, have to remove @error attribution.
+
   attr_reader :errors
 
   DUP_KANA = {
@@ -31,6 +33,15 @@ class ShiritoriEngine
     end
     [letter]
   end
+
+  def kana_key(letter)
+    DUP_KANA.each do |key, value|
+      return key if value.include? letter
+    end
+    letter
+  end
+
+  def all_kana_keys; DUP_KANA.keys; end
 
   private
 

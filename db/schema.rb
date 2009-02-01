@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090130174728) do
+ActiveRecord::Schema.define(:version => 20090131145256) do
 
   create_table "game_items", :force => true do |t|
     t.integer  "game_id"
@@ -33,6 +33,9 @@ ActiveRecord::Schema.define(:version => 20090130174728) do
     t.integer  "iknow_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "first_kana_key"
   end
+
+  add_index "items", ["first_kana_key"], :name => "index_items_on_first_kana_key"
 
 end

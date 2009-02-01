@@ -1,0 +1,31 @@
+<div class="menu">
+  <%= link_to 'しりとりする！', :controller => :game %> |
+  <%= link_to 'ランキング', :action => :ranking %> |
+  <%= link_to '遊び方', :controller => :game, :action => :help %> |
+  <%= link_to 'ライセンスなど', :controller => :game, :action => :license %>
+</div>
+
+<div class="content">
+  <%= link_to 'ゲームランキング', :controller => :game, :action => :ranking %>
+  |
+  アイテムランキング
+  <div>
+    <% @all_kana_keys.each do |kana_key| -%>
+      <%= link_to kana_key, :action => :ranking, :kana_key => kana_key %>
+      <%= " | " unless @all_kana_keys.last == kana_key %>
+    <% end -%>
+    <br/>
+
+    <h2>「<%= @kana_key %>」で始まるアイテムのランキング</h2>
+    <div class="indent">
+      <% if @item_count.size > 0 -%>
+        <% @item_count.each do |item, count| -%>
+          <%= count %>.
+          <%= iknow_item_link item %><br/>
+        <% end -%>
+      <% else -%>
+        １件もありません。
+      <% end -%>
+    </div>
+  </div>
+</div>
