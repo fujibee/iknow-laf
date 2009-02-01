@@ -1,8 +1,14 @@
 <%= render :partial => 'menu' %>
 
-<div class="context">
+<div class="content">
+  <div>
   このアプリケーションのソースコードは、以下の場所で
   <%= link_to 'MIT License', 'http://sourceforge.jp/projects/opensource/wiki/licenses%2FMIT_license' %>
   に従って公開されています。<br>
   <%= link_to 'github(iknow-laf) http://github.com/fujibee/iknow-laf/', 'http://github.com/fujibee/iknow-laf/' %>
+  </div>
+</div>
+
+<div class="content">
+  <%= render :partial => 'release' %>
 </div>

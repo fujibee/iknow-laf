@@ -12,11 +12,13 @@
   <%= render :partial => 'todo' %>
 </div>
 
-<% form_tag :action => 'search' do -%>
-  <%= text_field_tag :spell %>
-  <%= submit_tag '検索' %>
-<% end -%>
-<div>
+<div class="content">
+  <h2>アイテム管理<h2>
+  <% form_tag :action => 'search' do -%>
+    <%= text_field_tag :spell %>
+    <%= submit_tag '検索' %>
+  <% end -%>
+
   <% if @items.size > 0 -%>
     <%= will_paginate(@items) %>
     <table>
@@ -25,8 +27,9 @@
         <th>meaning</th>
         <th>kana</th>
         <th>iKnow! ID</th>
-        <th></th>
-    <% @items.each do |@item| -%>
+        <th>削除</th>
+      </tr>
+      <% @items.each do |@item| -%>
       <tr>
         <td><%= @item.spell %></td>
         <td><%= @item.meaning %></td>
@@ -41,7 +44,7 @@
         <td><%= link_to @item.iknow_id, "http://api.iknow.co.jp/items/#{@item.iknow_id}?include_sentences=true" %></td>
         <td><%= link_to 'x', {:action => :destroy, :id => @item}, :method => :delete, :confirm => "#{@item.display_name}を削除しますか？" %></td>
       </tr>
-    <% end -%>
+      <% end -%>
     </table>
     <%= will_paginate(@items) %>
   <% else -%>

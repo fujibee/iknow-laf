@@ -1,9 +1,17 @@
 # inputPanel
 page[:candidate_letters].replace_html(@candidate_letters)
 page[:first_word].value = ""
+page[:inputPanel].visual_effect(:highlight) if @status == :ok
+page[:inputPanel].visual_effect(:shake,
+                               :duration => 0.1,
+                               :distance => 10) if @status == :ng
 
 # message
 page[:message].replace_html(:partial => 'message')
+page[:message].visual_effect(:highlight) if @status == :ok
+page[:message].visual_effect(:shake,
+                             :duration => 0.1,
+                             :distance => 10) if @status == :ng
 
 # item panels
 page[:last_item_panel].replace_html(:partial => 'item_panel',

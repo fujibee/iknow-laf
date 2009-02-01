@@ -18,8 +18,7 @@ table {
   background-color: transparent;
 }
 
-th,
-td {
+th, td {
   margin: 0px; 
   padding: 0px;
   border-bottom: 0px solid #ddd;
@@ -29,14 +28,26 @@ td {
   background-color: transparent;
 }
 
+.content table {
+  margin: 1em 20px;
+  border: 0px solid #ccc;
+}
+
+.content th, .content td {
+  color: #666;
+  margin: 0px; 
+  padding: 1px;
+  border: 1px solid #666;
+  border-collapse: collapse;
+}
+
 form {
   margin: 5px; 
   padding: 5px; 
   background-color: transparent;
 }
 
-input,
-textarea {
+input, textarea {
   margin: 1px;
   padding: 1px;
   border-width: 1px;
@@ -105,6 +116,7 @@ a.iknow_link:hover {
   border-style: solid;
   border-color: #666;
   border-width: 1px;
+  padding: 10px;
 }
 
 .footer {
@@ -125,7 +137,7 @@ a.iknow_link:hover {
   border-bottom: 3px solid #333;
 }
 
-.panel input {
+.panel input, .content input {
   background-color: #EEEEEE;
 }
 

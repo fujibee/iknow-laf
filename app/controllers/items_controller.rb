@@ -35,10 +35,13 @@ class ItemsController < ApplicationController
     @kana_key = params[:kana_key] || 'あ'
     @all_kana_keys = ShiritoriEngine.new.all_kana_keys
     @items = Item.find_all_by_first_kana_key(@kana_key)
-    @item_count = {}
+    @item_counts = {}
     @items.each do |item|
       count = GameItem.find_all_by_item_id(item.id).size
-      @item_count[item] = count if count > 0
+      @item_counts[item] = count if count > 0
+    end
+    @sorted_items = @item_counts.keys.sort do |a, b|
+      @item_counts[b] <=> @item_counts[a]
     end
   end
 

@@ -26,6 +26,7 @@ class GameController < ApplicationController
         if @game.valid_answer? @first_word_item
           @game.history << @first_word_item.id
           flash[:notice] = "正解！"
+          @status = :ok
           candidate_word = @first_word_item.kana
         else
           @game.failure_times += 1
@@ -33,6 +34,7 @@ class GameController < ApplicationController
 
           @first_word_item ||= Item.new(:spell => first_word)
           flash[:notice] = @game.status
+          @status = :ng
 
           @submit_label = "もう一度しりとり！"
           candidate_word = @last_word_item.kana
@@ -87,7 +89,7 @@ class GameController < ApplicationController
 
   def ranking
     @games = Game.paginate(:all, :order => "score desc",
-                           :page => params[:page], :per_page => 100)
+                           :page => params[:page], :per_page => 20)
   end
   
   def iknow_panel

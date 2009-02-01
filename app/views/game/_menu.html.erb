@@ -1,6 +1,9 @@
 <div class="menu">
-  <%= link_to 'しりとりする！', :action => :index %> |
-  <%= link_to 'ランキング', :action => :ranking %> |
-  <%= link_to '遊び方', :action => :help %> |
-  <%= link_to 'ライセンスなど', :action => :license %>
+  <%= link_to_unless @game, 'しりとりする！', :action => :index %>
+  |
+  <%= link_to_unless @game, 'ランキング', :action => :ranking %>
+  |
+  <%= link_to_unless @game, '遊び方', :action => :help %>
+  |
+  <%= link_to_unless @game, 'ライセンスなど', :action => :license %>
 </div>

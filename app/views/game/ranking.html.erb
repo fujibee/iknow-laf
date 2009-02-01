@@ -5,19 +5,18 @@
   |
   <%= link_to 'アイテムランキング', :controller => :items, :action => :ranking %>
   <h2>ゲームランキング</h2>
-  <div>
+  <div style="margin: 0px 20px;">
   <% if @games.size > 0 -%>
-    <% @games.each do |g| -%>
-      <span style="font-size: <%= 500 / (@games.index(g) + 1) + 100 %>%">
-        <%= @games.index(g) + 1 %>位. <%= g.score %>回 <%= g.name %>さん
+    <% @games.each_with_index do |g, index| -%>
+      <span style="font-size: <%= 500 / (@games.offset + index + 1) + 110 %>%">
+        <%= @games.offset + index + 1 %>位. <%= g.score %>回 <%= g.name %>さん
       </span>
       [<%= g.created_at.localtime.strftime("%m/%d %H:%M") %>]<br/>
       <% if g.items.size > 0 -%>
       <div style="margin:0px 20px;border: solid 1px gray;">
         <%= "#{g.items.map {|i| iknow_item_link(i)}.join(image_tag 'arrow-right.png')}" %>
       </div>
-  <% end -%>
-
+      <% end -%>
     <% end -%>
     <%= will_paginate(@games) %>
   <% else -%>
@@ -25,3 +24,5 @@
   <% end -%>
   </div>
 </div>
+
+<div class="menu"><%= link_to '[管理用]', :controller => :items %></div>
