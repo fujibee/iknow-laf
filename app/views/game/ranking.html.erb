@@ -18,7 +18,7 @@
       </div>
       <% end -%>
     <% end -%>
-    <%= will_paginate(@games) %>
+    <%= will_paginate(@games, :prev_label => '<< 前へ', :next_label => '次へ >>') %>
   <% else -%>
     １件もありません。
   <% end -%>

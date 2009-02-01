@@ -15,7 +15,9 @@ class ItemsController < ApplicationController
 
   def update
     item = Item.find(params[:id])
-    item.update_attributes(:kana => params[:kana])
+    item.kana = params[:kana]
+    item.first_kana_key = ShiritoriEngine.new.kana_key(item.kana)
+    item.save
     render :nothing => true
   end
 

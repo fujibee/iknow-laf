@@ -34,7 +34,8 @@ class ShiritoriEngine
     [letter]
   end
 
-  def kana_key(letter)
+  def kana_key(word)
+    letter = word.first
     DUP_KANA.each do |key, value|
       return key if value.include? letter
     end
