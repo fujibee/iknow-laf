@@ -35,7 +35,9 @@ class ItemsController < ApplicationController
 
   def ranking
     @kana_key = params[:kana_key] || 'あ'
-    @all_kana_keys = ShiritoriEngine.new.all_kana_keys
+    @all_kana_keys = Item.all_kana_keys.map {|i| i.first_kana_key}.sort
+
+    # TODO move to item model
     @items = Item.find_all_by_first_kana_key(@kana_key)
     @item_counts = {}
     @items.each do |item|

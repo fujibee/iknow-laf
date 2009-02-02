@@ -17,6 +17,11 @@ class Item < ActiveRecord::Base
     items
   end
 
+  def self.all_kana_keys
+    candidates = Item.find_by_sql("SELECT DISTINCT first_kana_key FROM items")
+    candidates.select {|i| 'あ' <= i.first_kana_key and i.first_kana_key <= 'ん'}
+  end
+
   def display_name
     s = spell
     s += " #{meaning}[#{kana}]" if kana and meaning

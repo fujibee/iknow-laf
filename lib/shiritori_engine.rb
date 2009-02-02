@@ -42,8 +42,6 @@ class ShiritoriEngine
     letter
   end
 
-  def all_kana_keys; DUP_KANA.keys; end
-
   private
 
   def valid_connection?(last_word, first_word)
