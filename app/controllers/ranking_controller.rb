@@ -5,8 +5,14 @@ class RankingController < ApplicationController
   end
 
   def game
-    @games = Game.paginate(:all, :order => "score desc",
-                           :page => params[:page], :per_page => 20)
+    @order = 'score'
+    @games = paginated_games(@order)
+  end
+
+  def recent
+    @order = 'created_at'
+    @games = paginated_games(@order)
+    render :action => :game
   end
 
   def item
@@ -23,6 +29,13 @@ class RankingController < ApplicationController
     @sorted_items = @item_counts.keys.sort do |a, b|
       @item_counts[b] <=> @item_counts[a]
     end
+  end
+
+  private
+
+  def paginated_games(order)
+    Game.paginate(:all, :order => "#{order} desc",
+                  :page => params[:page], :per_page => 20)
   end
 
 end

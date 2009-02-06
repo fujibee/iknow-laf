@@ -1,17 +1,22 @@
 <%= render :partial => 'menu' %>
 
 <div class="content">
-  ゲームランキング
-  |
-  <%= link_to 'アイテムランキング', :action => :item %>
-  <h2>ゲームランキング</h2>
+  <%= render :partial => 'submenu' %>
+
+  <h2>ゲームランキング(<%= display_order_type(@order) %>)</h2>
   <div style="margin: 0px 20px;">
   <% if @games.size > 0 -%>
     <% @games.each_with_index do |g, index| -%>
-      <span style="font-size: <%= 500 / (@games.offset + index + 1) + 110 %>%">
-        <%= @games.offset + index + 1 %>位. <%= g.score %>回 <%= g.name %>さん
-      </span>
-      [<%= g.created_at.localtime.strftime("%m/%d %H:%M") %>]<br/>
+      <% if @order == 'score' -%>
+        <span style="font-size: <%= 500 / (@games.offset + index + 1) + 110 %>%">
+          <%= @games.offset + index + 1 %>位. <%= g.score %>回 <%= g.name %> さん
+        </span>
+        [<%= display_game_end_at(g) %>]<br/>
+      <% else -%>
+        <span style="font-size: 150%">
+          <%= display_game_end_at(g) %> - <%= g.score %>回 <%= g.name %> さん
+        </span><br/>
+      <% end -%>
       <% if g.items.size > 0 -%>
       <div style="margin:0px 20px;border: solid 1px gray;">
         <%= "#{g.items.map {|i| iknow_item_link(i)}.join(image_tag 'arrow-right.png')}" %>

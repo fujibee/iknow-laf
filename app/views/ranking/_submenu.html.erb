@@ -1,0 +1,10 @@
+ゲームランキング
+[
+<%= link_to_unless(@order == 'score', display_order_type('score'),
+                   :action => :game) %>
+|
+<%= link_to_unless(@order == 'created_at', display_order_type('created_at'),
+                   :action => :recent) %>
+]
+  |
+<%= link_to 'アイテムランキング', :action => :item %>
