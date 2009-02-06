@@ -23,6 +23,7 @@ class ItemsController < ApplicationController
 
   def destroy
     item = Item.find(params[:id])
+    logger.info ">> destroy.. #{item.id} #{item.display_name}"
     item.destroy
     redirect_to :action => :index
   end
