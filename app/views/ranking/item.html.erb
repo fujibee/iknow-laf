@@ -1,30 +1,20 @@
 <%= render :partial => 'menu' %>
 
 <div class="content">
-  <%= link_to 'ゲームランキング', :action => :game %>
-  |
-  アイテムランキング
+  <%= render :partial => 'submenu' %>
+
   <div>
     アイテムランキングはしりとりゲームでその単語が入力された回数のランキングです。<br/>
-    <% @all_kana_keys.each do |kana_key| -%>
-      <%= link_to_unless(kana_key == @kana_key, kana_key, :kana_key => kana_key) %>
-      <%= " | " unless @all_kana_keys.last == kana_key %>
+    <% @all_kana_keys.each do |letter| -%>
+      <%= link_to_letter(letter) %>
+      <%= " | " unless @all_kana_keys.last == letter %>
     <% end -%>
     <br/>
 
-    <h2><b>「<%= @kana_key %>」</b>で始まるアイテムのランキング</h2>
-    <div class="indent">
-      <% if @sorted_items.size > 0 -%>
-        <% @sorted_items.each do |item| -%>
-          <%= @item_counts[item] %>回.
-          <%= iknow_item_link item %><br/>
-        <% end -%>
-      <% else -%>
-        １件もありません。
-      <% end -%>
+    <div id="letter">
+      <%= render :partial => 'letter' %>
     </div>
   </div>
-  TODO: AJAX化
 </div>
 
 <div class="menu">

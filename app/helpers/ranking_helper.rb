@@ -9,4 +9,12 @@ module RankingHelper
     elsif order == 'created_at'; '最近のしりとり'
     end
   end
+
+  def link_to_letter(letter, label = nil)
+    return label unless letter
+    label ||= letter
+    link_to_remote(label, :update => 'letter',
+                   :url => {:action => :change_letter},
+                   :with => "'letter=' + encodeURIComponent('#{letter}')")
+  end
 end

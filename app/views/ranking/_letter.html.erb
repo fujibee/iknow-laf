@@ -1,0 +1,19 @@
+<h2>
+  <b>「<%= letter %>」</b>で始まるアイテムのランキング
+  <span class="small">
+    <%= link_to_letter @prev_letter, '<< 前' %>
+    <%= link_to_letter @next_letter, '次 >>' %> 
+  </span>
+</h2>
+<div class="indent">
+  <% if @counts.size > 0 -%>
+    <% @counts.each do |count| -%>
+      <span style="font-size: <%= 100 + count %>%">
+      <%= count %>回.
+      <%= @items_by_count[count].map {|item| iknow_item_link item}.join(" - ") %>
+      <br/>
+    <% end -%>
+  <% else -%>
+    １件もありません。
+  <% end -%>
+</div>
