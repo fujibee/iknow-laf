@@ -3,7 +3,7 @@
 <div class="content">
   ゲームランキング
   |
-  <%= link_to 'アイテムランキング', :controller => :items, :action => :ranking %>
+  <%= link_to 'アイテムランキング', :action => :item %>
   <h2>ゲームランキング</h2>
   <div style="margin: 0px 20px;">
   <% if @games.size > 0 -%>
@@ -25,4 +25,6 @@
   </div>
 </div>
 
-<div class="menu"><%= link_to '[管理用]', :controller => :items %></div>
+<div class="menu">
+  <%= link_to '[管理用]', :controller => :items %>
+</div>

@@ -84,14 +84,9 @@ class GameController < ApplicationController
 
   def destroy_all
     #Game.destroy_all
-    redirect_to :action => :ranking
+    redirect_to :action => :index
   end
 
-  def ranking
-    @games = Game.paginate(:all, :order => "score desc",
-                           :page => params[:page], :per_page => 20)
-  end
-  
   def iknow_panel
     @iknow_id = params[:iknow_id]
     item = Iknow::Item.find(@iknow_id, :include_sentences => true)

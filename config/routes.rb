@@ -42,6 +42,7 @@ ActionController::Routing::Routes.draw do |map|
   map.connect ':controller/:action/:id'
   map.connect ':controller/:action/:id.:format'
 
-  map.resources :controller => :game, :collection => { :ranking => :get }
+  map.resources :controller => :game
   map.resources :controller => :items, :collection => { :delete_all => :delete }
+  map.resources :controller => :ranking
 end

@@ -1,19 +1,13 @@
-<div class="menu">
-  <%= link_to 'しりとりする！', :controller => :game %> |
-  <%= link_to 'ランキング', :action => :ranking %> |
-  <%= link_to '遊び方', :controller => :game, :action => :help %> |
-  <%= link_to 'ライセンスなど', :controller => :game, :action => :license %>
-</div>
+<%= render :partial => 'menu' %>
 
 <div class="content">
-  <%= link_to 'ゲームランキング', :controller => :game, :action => :ranking %>
+  <%= link_to 'ゲームランキング', :action => :game %>
   |
   アイテムランキング
   <div>
     アイテムランキングはしりとりゲームでその単語が入力された回数のランキングです。<br/>
     <% @all_kana_keys.each do |kana_key| -%>
-      <%= link_to_unless(kana_key == @kana_key, kana_key,
-                         :action => :ranking, :kana_key => kana_key) %>
+      <%= link_to_unless(kana_key == @kana_key, kana_key, :kana_key => kana_key) %>
       <%= " | " unless @all_kana_keys.last == kana_key %>
     <% end -%>
     <br/>
@@ -33,4 +27,6 @@
   TODO: AJAX化
 </div>
 
-<div class="menu"><%= link_to '[管理用]', :action => :index %></div>
+<div class="menu">
+  <%= link_to '[管理用]', :controller => :items, :action => :index %>
+</div>

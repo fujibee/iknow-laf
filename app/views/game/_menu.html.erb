@@ -1,7 +1,7 @@
 <div class="menu">
   <%= link_to_unless @game, 'しりとりする！', :action => :index %>
   |
-  <%= link_to_unless @game, 'ランキング', :action => :ranking %>
+  <%= link_to_unless @game, 'ランキング', :controller => :ranking %>
   |
   <%= link_to_unless @game, '遊び方', :action => :help %>
   |
