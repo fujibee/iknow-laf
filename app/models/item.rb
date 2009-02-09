@@ -30,6 +30,28 @@ class Item < ActiveRecord::Base
     items_per_count
   end
 
+  def self.suggest_items(word, excepts)
+    kana_key = ShiritoriEngine.new.kana_key(word.last)
+    letter = candidate_letters(kana_key) if word
+    ticket = 3
+    items = []
+    items_per_count = find_items_per_count(letter)
+    counts_ordered = items_per_count.keys.sort.reverse
+    counts_ordered.each do |count|
+      items_per_count[count].each do |i|
+        next if excepts.include? i
+        items << i
+        ticket -= 1
+        break if ticket == 0
+      end
+    end
+    items
+  end
+
+  def self.candidate_letters(word)
+    ShiritoriEngine.new.candidates(word).join("、")
+  end
+
   def self.all_kana_keys
     candidates = Item.find_by_sql("SELECT DISTINCT first_kana_key FROM items")
     candidates.select {|i| 'あ' <= i.first_kana_key and i.first_kana_key <= 'ん'}

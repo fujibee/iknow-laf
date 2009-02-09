@@ -10,6 +10,7 @@ class GameController < ApplicationController
      'tomato', 'umbrella', 'van', 'whale', 'watch', 'zebra']
 
   def index
+    @suggest_items = []
     @game = session[:game]
   end
 
@@ -44,8 +45,8 @@ class GameController < ApplicationController
         candidate_word = @last_word_item.kana
       end
 
-      # TODO to model object
-      @candidate_letters = ShiritoriEngine.new.candidates(candidate_word).join("、")
+      @candidate_letters = Item.candidate_letters(candidate_word)
+      @suggest_items = []
     end
   end
 
@@ -73,6 +74,10 @@ class GameController < ApplicationController
     if @game
       flash[:notice] = @game.status
       @first_word_item = Item.new(:spell => params[:first_word])
+      @last_word_item = Item.find(@game.history.last)
+      end_word = @last_word_item.kana
+      @suggest_items = Item.suggest_items(end_word, @game.history)
+      @candidate_letters = Item.candidate_letters(end_word)
       session[:game] = nil
       @game.score = @game.history.size
       @game.items = @game.history.map{|id| Item.find(id)}
