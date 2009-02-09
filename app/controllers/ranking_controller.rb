@@ -40,18 +40,8 @@ class RankingController < ApplicationController
     @prev_letter = @all_kana_keys[index - 1] unless index == 0
     @next_letter = @all_kana_keys[index + 1] unless index == @all_kana_keys.size - 1
 
-    # TODO move to item model
-    items = Item.find_all_by_first_kana_key(@letter)
-    @items_by_count = {}; counts = []
-    items.each do |item|
-      count = GameItem.find_all_by_item_id(item.id).size
-      if count > 0
-        @items_by_count[count] ||= []
-        @items_by_count[count] << item
-        counts << count
-      end
-    end
-    @counts = counts.uniq.sort.reverse
+    @items_per_count = Item.find_items_per_count(@letter)
+    @counts = @items_per_count.keys.uniq.sort.reverse
   end
 
 end

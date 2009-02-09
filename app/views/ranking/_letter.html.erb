@@ -10,7 +10,7 @@
     <% @counts.each do |count| -%>
       <span style="font-size: <%= 100 + count %>%">
       <%= count %>回.
-      <%= @items_by_count[count].map {|item| iknow_item_link item}.join(" - ") %>
+      <%= @items_per_count[count].map {|item| iknow_item_link item}.join(" - ") %>
       <br/>
     <% end -%>
   <% else -%>

@@ -17,6 +17,19 @@ class Item < ActiveRecord::Base
     items
   end
 
+  def self.find_items_per_count(letter)
+    items = Item.find_all_by_first_kana_key(letter)
+    items_per_count = {}
+    items.each do |item|
+      count = GameItem.find_all_by_item_id(item.id).size
+      if count > 0
+        items_per_count[count] ||= []
+        items_per_count[count] << item
+      end
+    end
+    items_per_count
+  end
+
   def self.all_kana_keys
     candidates = Item.find_by_sql("SELECT DISTINCT first_kana_key FROM items")
     candidates.select {|i| 'あ' <= i.first_kana_key and i.first_kana_key <= 'ん'}
