@@ -25,7 +25,6 @@
         <th>meaning</th>
         <th>kana</th>
         <th>iKnow! ID</th>
-        <th>削除</th>
       </tr>
       <% @items.each do |@item| -%>
       <tr>
@@ -40,7 +39,6 @@
                             :on => :blur, :with => "'id=#{@item.id}&kana='+value" -%>
         <% end -%>
         <td><%= link_to @item.iknow_id, "http://api.iknow.co.jp/items/#{@item.iknow_id}?include_sentences=true" %></td>
-        <td><%= link_to 'x', {:action => :destroy, :id => @item}, :method => :delete, :confirm => "#{@item.display_name}を削除しますか？" %></td>
       </tr>
       <% end -%>
     </table>
