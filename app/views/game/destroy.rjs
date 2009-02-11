@@ -1,0 +1,2 @@
+page[:endPanel].replace_html(:partial => 'end_panel')
+page[:endPanel].show

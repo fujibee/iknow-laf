@@ -20,6 +20,8 @@
       </td>
       <td style="background-color: transparent;">
         <%= image_tag 'arrow-right.png' %>
+        <!-- game over 用 -->
+        <div id="endPanel" class="panel"></div>
       </td>
       <td>
         <div id="first_item_panel" class="panel"></div>
@@ -31,13 +33,11 @@
   <div id="scoreboard" class="upward"></div>
 
   <div class="menu upward"> 
-    <%= link_to 'おしまいにする', :action => :destroy, :method => :delete %>
+    <%= link_to_remote 'おしまいにする', :url => {:action => :destroy} %>
   </div>
 
-  <!-- game over 用 -->
-  <%= render :partial => "end_panel" %>
-
   <% javascript_tag do -%>
+    $("endPanel").hide();
     function start_loading() {
       document.body.style.cursor = 'wait';
       $('input_loading').show();

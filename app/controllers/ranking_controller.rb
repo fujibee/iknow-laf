@@ -37,8 +37,10 @@ class RankingController < ApplicationController
     @all_kana_keys = Item.all_kana_keys.map {|i| i.first_kana_key}.sort
     @letter = params[:letter] || 'あ'
     index = @all_kana_keys.index(@letter) 
-    @prev_letter = @all_kana_keys[index - 1] unless index == 0
-    @next_letter = @all_kana_keys[index + 1] unless index == @all_kana_keys.size - 1
+    if index
+      @prev_letter = @all_kana_keys[index - 1] unless index == 0
+      @next_letter = @all_kana_keys[index + 1] unless index == @all_kana_keys.size - 1
+    end
 
     @items_per_count = Item.find_items_per_count(@letter)
     @counts = @items_per_count.keys.uniq.sort.reverse

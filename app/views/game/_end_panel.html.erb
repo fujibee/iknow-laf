@@ -1,22 +1,22 @@
-<div id="endPanel" class="panel">
-  <br/>
-  <%= @game.name %>さんのスコアは、
-  <b><span id="game_score"><%= @game.score %></span>回</b>でした！<br/>
-  <% if @suggest_items.size > 0 -%>
-    <b>「<%= @candidate_letters %>」</b>で始まるアイテムは、<br/>
-    <p>
-    <% @suggest_items.each do |i| -%>
-      <%= iknow_item_link i -%><br/>
-    <% end -%>
-    </p>
-    などがありました。<br/>
+<br/>
+<%= @game.name %>さんのスコアは、
+<b><span id="game_score"><%= @game.score %></span>回</b>でした！<br/>
+<% if @suggest_items.size > 0 -%>
+  <b>「<%= @candidate_letters %>」</b>で始まるアイテムは、<br/>
+  <p>
+  <% @suggest_items.each do |i| -%>
+    <%= iknow_item_link i -%><br/>
   <% end -%>
-  <%= link_to 'もう一度やる！', :action => :index %> |
-  <%= link_to 'ランキングを見る', :controller => :ranking %><br/>
+  </p>
+  などがありました。<br/>
   <br/>
-</div>
+<% end -%>
+<%= link_to 'もう一度やる！', :action => :index %> |
+<%= link_to 'ランキングを見る', :controller => :ranking %><br/>
+<br/>
 <% javascript_tag do -%>
   var endPanel = new YAHOO.widget.Panel("endPanel",
     { close: true, width: "300px", fixedCenter: true, modal: true});
   endPanel.setHeader("ゲームオーバー！")
+  endPanel.render(); 
 <% end -%>
