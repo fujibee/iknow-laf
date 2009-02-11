@@ -94,16 +94,8 @@ class GameController < ApplicationController
 
   def iknow_panel
     @iknow_id = params[:iknow_id]
-    item = Iknow::Item.find(@iknow_id, :include_sentences => true)
-    if item.sentences
-      item.sentences.each do |sentence|
-        if sentence.creator and sentence.creator.downcase == 'cerego'
-          @sentence = sentence
-          @ja_text = sentence.translations.first.text if sentence.translations
-          break
-        end
-      end
-    end
+    @sentence = SentenceSelector.new.select(@iknow_id)
+    @ja_text = @sentence.translations.first.text if @sentence and @sentence.translations
     #logger.debug(item.to_yaml)
   end
 
