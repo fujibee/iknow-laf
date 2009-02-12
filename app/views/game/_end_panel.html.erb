@@ -3,11 +3,11 @@
 <b><span id="game_score"><%= @game.score %></span>回</b>でした！<br/>
 <% if @suggest_items.size > 0 -%>
   <b>「<%= @candidate_letters %>」</b>で始まるアイテムは、<br/>
-  <p>
+  <div style="font-size: 110%;">
   <% @suggest_items.each do |i| -%>
     <%= iknow_item_link i -%><br/>
   <% end -%>
-  </p>
+  </div>
   などがありました。<br/>
   <br/>
 <% end -%>

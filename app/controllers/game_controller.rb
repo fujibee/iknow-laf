@@ -46,7 +46,7 @@ class GameController < ApplicationController
       end
 
       @candidate_letters = Item.candidate_letters(candidate_word)
-      @suggest_items = []
+      @suggest_items = [] unless @suggest_items
     end
   end
 
