@@ -17,10 +17,8 @@
           <%= display_game_end_at(g) %> - <%= g.score %>回 <%= g.name %> さん
         </span><br/>
       <% end -%>
-      <% if g.items.size > 0 -%>
-      <div style="margin:0px 20px;border: solid 1px gray;">
-        <%= "#{g.items.map {|i| iknow_item_link(i)}.join(image_tag 'arrow-right.png')}" %>
-      </div>
+      <% cache(:controller => :ranking, :action => :game_history, :id => g.id) do -%>
+        <%= render :partial => 'game_history', :locals => {:game => g} %>
       <% end -%>
     <% end -%>
     <%= will_paginate(@games, :prev_label => '<< 前へ', :next_label => '次へ >>') %>

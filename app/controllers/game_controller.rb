@@ -19,7 +19,7 @@ class GameController < ApplicationController
     if @game
       @last_word_item = Item.find(@game.history.last)
 
-      # TODO too complex... it could be entiry able to be managed by a "game" object.
+      # TODO make below method of game model.
       first_word = params[:first_word]
       if first_word and not first_word.empty?
         candidate_items = Item.find_and_register(first_word)

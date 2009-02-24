@@ -42,8 +42,9 @@ class Item < ActiveRecord::Base
         next if excepts.include? i
         items << i
         ticket -= 1
-        break if ticket == 0
+        break unless ticket > 0
       end
+      break unless ticket > 0
     end
     items
   end
