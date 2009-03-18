@@ -45,4 +45,5 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :controller => :game
   map.resources :controller => :items, :collection => { :delete_all => :delete }
   map.resources :controller => :ranking
+  map.resources :controller => :oauth
 end
