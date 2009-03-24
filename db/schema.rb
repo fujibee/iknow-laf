@@ -9,7 +9,24 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090131145256) do
+ActiveRecord::Schema.define(:version => 20090318015733) do
+
+  create_table "comments", :force => true do |t|
+    t.text     "body"
+    t.integer  "user_id"
+    t.string   "user_name"
+    t.string   "url"
+    t.string   "mail"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "forums", :force => true do |t|
+    t.string   "title"
+    t.string   "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "game_items", :force => true do |t|
     t.integer  "game_id"
@@ -37,5 +54,14 @@ ActiveRecord::Schema.define(:version => 20090131145256) do
   end
 
   add_index "items", ["first_kana_key"], :name => "index_items_on_first_kana_key"
+
+  create_table "topics", :force => true do |t|
+    t.string   "title"
+    t.text     "body"
+    t.integer  "user_id"
+    t.string   "user_name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end

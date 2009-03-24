@@ -1,0 +1,18 @@
+<div class="menu">
+  <%= link_to 'ゲームへ戻る', :controller => :game %>
+</div>
+
+<div>
+  ユーザフォーラムには、「iKnow! しりとり」に対するご意見やご質問、不具合の報告などができます。
+
+  <% if @forums.size > 0 -%>
+    <% @forums.each do |f| -%>
+      <div>
+        <%= f.title %><br/>
+        <%= f.description %>
+      </div>
+    <% end -%>
+  <% else -%>
+    <div>フォーラムはまだありません。</div>
+  <% end -%>
+</div>

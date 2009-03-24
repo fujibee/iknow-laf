@@ -5,5 +5,7 @@
   |
   <%= link_to_unless @game, '遊び方', :action => :help %>
   |
+  <%= link_to_unless @game, 'ユーザフォーラム', :controller => :forums %>
+  |
   <%= link_to_unless @game, 'ライセンスなど', :action => :license %>
 </div>
