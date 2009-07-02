@@ -160,6 +160,7 @@ a.iknow_link:hover {
   border-color: #ff6633;
   position: relative;
   top: -20px;
+  z-index: 10;
 }
 
 #inputPanel_c, #inputPanel_h, #inputPanel,

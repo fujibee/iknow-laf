@@ -2,13 +2,15 @@
   <%= link_to 'ゲームへ戻る', :controller => :game %>
 </div>
 
+<%= flash[:notice] %>
+
 <div>
   ユーザフォーラムには、「iKnow! しりとり」に対するご意見やご質問、不具合の報告などができます。
 
   <% if @forums.size > 0 -%>
     <% @forums.each do |f| -%>
       <div>
-        <%= f.title %><br/>
+        <%= link_to f.title, :controller => :topics %><br/>
         <%= f.description %>
       </div>
     <% end -%>
@@ -16,3 +18,5 @@
     <div>フォーラムはまだありません。</div>
   <% end -%>
 </div>
+
+<div class="menu"><%= link_to '[管理用]', :action => :new %></div>
